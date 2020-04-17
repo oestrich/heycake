@@ -18,4 +18,11 @@ config :logger, level: :info
 
 config :phoenix, :logger, false
 
+config :porcelain, driver: Porcelain.Driver.Basic
+
 config :stein_phoenix, :views, error_helpers: Web.ErrorHelpers
+
+config :ueberauth, Ueberauth,
+  providers: [
+    slack: {Ueberauth.Strategy.Slack, []}
+  ]

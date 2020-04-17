@@ -29,4 +29,11 @@ defmodule HeyCake.Teams.Team do
     |> validate_required([:slack_id, :token, :user_id])
     |> unique_constraint(:slack_id)
   end
+
+  def update_changeset(struct, params) do
+    struct
+    |> cast(params, [:slack_id, :token, :user_id])
+    |> validate_required([:slack_id, :token, :user_id])
+    |> unique_constraint(:slack_id)
+  end
 end

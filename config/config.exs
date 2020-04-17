@@ -24,7 +24,14 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :porcelain, driver: Porcelain.Driver.Basic
+
 config :stein_phoenix, :views, error_helpers: Web.ErrorHelpers
+
+config :ueberauth, Ueberauth,
+  providers: [
+    slack: {Ueberauth.Strategy.Slack, [default_scope: "bot"]}
+  ]
 
 if File.exists?("config/#{Mix.env()}.exs") do
   import_config "#{Mix.env()}.exs"

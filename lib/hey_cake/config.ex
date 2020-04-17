@@ -27,6 +27,7 @@ defmodule HeyCake.Config do
         bindings: [
           {:slack_app_id, "SLACK_APP_ID"},
           {:slack_client_id, "SLACK_CLIENT_ID"},
+          {:slack_client_secret, "SLACK_CLIENT_SECRET"},
           {:slack_signing_id, "SLACK_SIGNING_ID"}
         ]
       }

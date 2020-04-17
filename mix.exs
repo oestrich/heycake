@@ -50,6 +50,7 @@ defmodule HeyCake.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:stein, "~> 0.5"},
       {:stein_phoenix, "~> 0.1"},
+      {:ueberauth_slack, "~> 0.6"},
       {:vapor, "~> 0.8.0"}
     ]
   end

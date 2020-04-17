@@ -52,6 +52,13 @@ defmodule Web.Router do
     resources("/profile", ProfileController, singleton: true, only: [:show, :edit, :update])
   end
 
+  scope "/auth", Web do
+    pipe_through([:browser, :logged_in])
+
+    get("/:provider", AuthController, :request)
+    get("/:provider/callback", AuthController, :callback)
+  end
+
   scope "/", Web do
     pipe_through([:api])
 

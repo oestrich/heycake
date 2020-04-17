@@ -9,6 +9,8 @@ defmodule HeyCake.Users.User do
 
   @type t :: %__MODULE__{}
 
+  alias HeyCake.Teams.Team
+
   schema "users" do
     field(:token, Ecto.UUID)
 
@@ -25,6 +27,8 @@ defmodule HeyCake.Users.User do
 
     field(:password_reset_token, Ecto.UUID)
     field(:password_reset_expires_at, :utc_datetime)
+
+    has_many(:teams, Team)
 
     timestamps()
   end

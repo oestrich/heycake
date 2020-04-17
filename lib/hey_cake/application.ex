@@ -5,7 +5,16 @@ defmodule HeyCake.Application do
 
   use Application
 
+  alias HeyCake.Config
+
   def start(_type, _args) do
+    config = Config.application()
+
+    Application.put_env(:ueberauth, Ueberauth.Strategy.Slack.OAuth,
+      client_id: config.slack_client_id,
+      client_secret: config.slack_client_secret
+    )
+
     children = [
       HeyCake.Config.Cache,
       HeyCake.Repo,
