@@ -17,8 +17,6 @@
 
             <%= FormView.password_field(f, :password_confirmation, placeholder: "Password Confirmation") %>
 
-            <%= FormView.file_field(f, :avatar) %>
-
             <%= FormView.submit_button("Register") %>
           <% end) %>
         </div>

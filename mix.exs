@@ -50,7 +50,6 @@ defmodule HeyCake.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:stein, "~> 0.5"},
       {:stein_phoenix, "~> 0.1"},
-      {:stein_storage, git: "https://github.com/smartlogic/stein_storage.git"},
       {:vapor, "~> 0.8.0"}
     ]
   end

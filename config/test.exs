@@ -16,8 +16,6 @@ config :logger, level: :warn
 
 config :bcrypt_elixir, :log_rounds, 4
 
-config :stein_storage, backend: :test
-
 if File.exists?("config/test.extra.exs") do
   import_config("test.extra.exs")
 end

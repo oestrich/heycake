@@ -71,7 +71,3 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :phoenix, :logger, false
-
-config :stein_storage,
-  backend: :file,
-  file_backend_folder: "uploads/"

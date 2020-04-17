@@ -6,7 +6,6 @@ defmodule HeyCake.Users do
   alias HeyCake.Emails
   alias HeyCake.Mailer
   alias HeyCake.Repo
-  alias HeyCake.Users.Avatar
   alias HeyCake.Users.User
   alias Stein.Accounts
 
@@ -62,13 +61,10 @@ defmodule HeyCake.Users do
     result =
       Ecto.Multi.new()
       |> Ecto.Multi.insert(:user, changeset)
-      |> Ecto.Multi.run(:avatar, fn _repo, %{user: user} ->
-        Avatar.maybe_upload_avatar(user, params)
-      end)
       |> Repo.transaction()
 
     case result do
-      {:ok, %{avatar: user}} ->
+      {:ok, %{user: user}} ->
         user
         |> Emails.welcome_email()
         |> Mailer.deliver_later()
@@ -89,13 +85,10 @@ defmodule HeyCake.Users do
     result =
       Ecto.Multi.new()
       |> Ecto.Multi.update(:user, changeset)
-      |> Ecto.Multi.run(:avatar, fn _repo, %{user: user} ->
-        Avatar.maybe_upload_avatar(user, params)
-      end)
       |> Repo.transaction()
 
     case result do
-      {:ok, %{avatar: user}} ->
+      {:ok, %{user: user}} ->
         maybe_verify_email_again(user, changeset)
         {:ok, user}
 

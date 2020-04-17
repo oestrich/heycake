@@ -12,8 +12,6 @@
 
             <%= FormView.text_field(f, :last_name) %>
 
-            <%= FormView.file_field(f, :avatar) %>
-
             <%= FormView.submit_button("Update") %>
           <% end) %>
         </div>

@@ -19,9 +19,3 @@ config :logger, level: :info
 config :phoenix, :logger, false
 
 config :stein_phoenix, :views, error_helpers: Web.ErrorHelpers
-
-config :stein_storage, backend: :s3
-
-config :ex_aws,
-  access_key_id: {:system, "AWS_ACCESS_KEY_ID"},
-  secret_access_key: {:system, "AWS_SECRET_ACCESS_KEY"}
