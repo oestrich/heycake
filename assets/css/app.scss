@@ -1,7 +1,3 @@
-/* This file is for your main application css. */
-
-@import '~bootstrap/scss/bootstrap';
-@import '~startbootstrap-sb-admin-2/css/sb-admin-2';
-
-@import "navbar";
-@import "overrides";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,2 +1,2 @@
 msgid "HeyCake"
-msgstr "HeyCake"
+msgstr "heycake"
