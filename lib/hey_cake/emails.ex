@@ -39,7 +39,7 @@ defmodule HeyCake.Emails do
 
   defp base_email() do
     new_email()
-    |> from("no-reply@example.com")
+    |> from("no-reply@heycake.chat")
   end
 
   defmodule EmailView do
