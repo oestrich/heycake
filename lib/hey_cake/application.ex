@@ -5,7 +5,13 @@ defmodule HeyCake.Application do
 
   use Application
 
+  alias HeyCake.Config
+
   def start(_type, _args) do
+    config = Config.application()
+
+    Application.put_env(:stein_storage, :bucket, config.stein_storage_bucket)
+
     children = [
       HeyCake.Config.Cache,
       HeyCake.Repo,
