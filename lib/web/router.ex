@@ -42,6 +42,8 @@ defmodule Web.Router do
     post("/register/reset/verify", RegistrationResetController, :update)
 
     get("/users/confirm", ConfirmationController, :confirm)
+
+    get("/_health", PageController, :health)
   end
 
   scope "/", Web do
