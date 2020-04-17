@@ -20,6 +20,8 @@
     <%= if Map.has_key?(assigns, :open_graph_url) do %>
       <meta property="og:url" content="<%= @open_graph_url %>" />
     <% end %>
+
+    <meta name="twitter:card" content="summary" />
   </head>
   <body class="bg-gray-400 font-sans leading-normal tracking-normal">
     <nav class="bg-indigo-800 p-2 mt-0 fixed w-full z-10 top-0">
