@@ -50,6 +50,12 @@ defmodule Web.Router do
     resources("/profile", ProfileController, singleton: true, only: [:show, :edit, :update])
   end
 
+  scope "/", Web do
+    pipe_through([:api])
+
+    post("/webhooks/slack", WebhookController, :slack)
+  end
+
   if Mix.env() == :dev do
     forward("/emails/sent", Bamboo.SentEmailViewerPlug)
   end

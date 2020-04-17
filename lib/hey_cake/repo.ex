@@ -3,20 +3,10 @@ defmodule HeyCake.Repo do
     otp_app: :hey_cake,
     adapter: Ecto.Adapters.Postgres
 
-  alias Vapor.Provider.Dotenv
-  alias Vapor.Provider.Env
+  alias HeyCake.Config
 
   def init(_type, config) do
-    providers = [
-      %Dotenv{},
-      %Env{bindings: [database_url: "DATABASE_URL", pool_size: "POOL_SIZE"]}
-    ]
-
-    translations = [
-      pool_size: fn s -> String.to_integer(s) end
-    ]
-
-    vapor_config = Vapor.load!(providers, translations)
+    vapor_config = Config.database()
 
     config =
       Keyword.merge(config,

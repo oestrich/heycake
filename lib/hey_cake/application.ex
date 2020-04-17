@@ -7,6 +7,7 @@ defmodule HeyCake.Application do
 
   def start(_type, _args) do
     children = [
+      HeyCake.Config.Cache,
       HeyCake.Repo,
       Web.Endpoint
     ]

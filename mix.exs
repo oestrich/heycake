@@ -37,6 +37,7 @@ defmodule HeyCake.MixProject do
       {:credo, "~> 1.1", only: [:dev, :test]},
       {:ecto_sql, "~> 3.1"},
       {:gettext, "~> 0.11"},
+      {:mojito, "~> 0.6"},
       {:jason, "~> 1.0"},
       {:logster, "~> 1.0"},
       {:phoenix, "~> 1.4.11"},
