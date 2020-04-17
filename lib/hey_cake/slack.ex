@@ -50,18 +50,36 @@ defmodule HeyCake.Slack.Events.Message do
 
   @behaviour HeyCake.Slack.Event
 
+  alias HeyCake.Callouts
   alias HeyCake.Slack.Client
   alias HeyCake.Slack.Event
   alias HeyCake.Teams
 
   @impl true
-  def process(%{"channel" => channel, "team" => team, "ts" => timestamp, "blocks" => blocks}) do
-    {:ok, team} = Teams.get(team)
+  def process(event) do
+    %{"ts" => timestamp} = event
 
-    text_elements = Event.text_elements(blocks)
+    {:ok, team} = Teams.get(Map.fetch!(event, "team"))
+
+    text_elements = Event.text_elements(Map.fetch!(event, "blocks"))
 
     case contains_cake?(text_elements) && contains_users?(text_elements) do
       true ->
+        channel = Map.fetch!(event, "channel")
+        user_id = Map.fetch!(event, "user")
+        text = Map.fetch!(event, "text")
+
+        user_ids =
+          text_elements
+          |> Enum.filter(fn element ->
+            element["type"] == "user"
+          end)
+          |> Enum.map(fn element ->
+            element["user_id"]
+          end)
+
+        {:ok, _callout} = Callouts.record(team, channel, user_id, user_ids, text)
+
         Client.react(team, channel, timestamp, "white_check_mark")
 
       false ->

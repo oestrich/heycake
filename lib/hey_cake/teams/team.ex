@@ -7,6 +7,7 @@ defmodule HeyCake.Teams.Team do
 
   import Ecto.Changeset
 
+  alias HeyCake.Callouts.Callout
   alias HeyCake.Users.User
 
   @type t :: %__MODULE__{}
@@ -16,6 +17,8 @@ defmodule HeyCake.Teams.Team do
     field(:token, :string)
 
     belongs_to(:user, User)
+
+    has_many(:callouts, Callout)
 
     timestamps()
   end
