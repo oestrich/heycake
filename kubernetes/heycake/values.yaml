@@ -1,0 +1,15 @@
+imagePullSecrets:
+  - name: regcred
+
+image:
+  repository: oestrich/heycake
+  # tag:
+  pullPolicy: IfNotPresent
+
+web:
+  host: "heycake.chat"
+
+secrets:
+  webConfig: "heycake-config"
+
+resources: {}

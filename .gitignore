@@ -37,3 +37,5 @@ npm-debug.log
 /uploads/
 
 /.env.dev
+
+/kubernetes/heycake-config.yml

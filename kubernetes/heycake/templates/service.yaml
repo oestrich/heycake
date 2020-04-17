@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "heycake.fullname" . }}
+  labels:
+    {{- include "heycake.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- include "heycake.selectorLabels" . | nindent 4 }}
+  ports:
+    - port: 80
+      targetPort: phoenix
+      protocol: TCP
+      name: phoenix
