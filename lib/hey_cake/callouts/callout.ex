@@ -14,21 +14,17 @@ defmodule HeyCake.Callouts.Callout do
   schema "callouts" do
     field(:channel_id, :string)
     field(:text, :string)
-    field(:user_id, :string)
-    field(:user_ids, {:array, :string})
+    field(:sending_user_id, :string)
+    field(:receiving_user_id, :string)
 
     belongs_to(:team, Team)
 
     timestamps()
   end
 
-  def create_changeset(struct, channel_id, user_id, user_ids, text) do
+  def create_changeset(struct, params) do
     struct
-    |> change(%{})
-    |> put_change(:channel_id, channel_id)
-    |> put_change(:user_id, user_id)
-    |> put_change(:user_ids, user_ids)
-    |> put_change(:text, text)
-    |> validate_required([:channel_id, :text, :user_id, :user_ids, :team_id])
+    |> cast(params, [:channel_id, :text, :sending_user_id, :receiving_user_id])
+    |> validate_required([:channel_id, :text, :sending_user_id, :receiving_user_id, :team_id])
   end
 end

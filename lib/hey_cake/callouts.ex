@@ -9,10 +9,10 @@ defmodule HeyCake.Callouts do
   @doc """
   Record callouts on a team
   """
-  def record(team, channel_id, user_id, user_ids, text) do
+  def record(team, params) do
     team
     |> Ecto.build_assoc(:callouts)
-    |> Callout.create_changeset(channel_id, user_id, user_ids, text)
+    |> Callout.create_changeset(params)
     |> Repo.insert()
   end
 end

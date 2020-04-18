@@ -66,19 +66,25 @@ defmodule HeyCake.Slack.Events.Message do
     case contains_cake?(text_elements) && contains_users?(text_elements) do
       true ->
         channel = Map.fetch!(event, "channel")
-        user_id = Map.fetch!(event, "user")
+        sending_user_id = Map.fetch!(event, "user")
         text = Map.fetch!(event, "text")
 
-        user_ids =
-          text_elements
-          |> Enum.filter(fn element ->
-            element["type"] == "user"
-          end)
-          |> Enum.map(fn element ->
-            element["user_id"]
-          end)
-
-        {:ok, _callout} = Callouts.record(team, channel, user_id, user_ids, text)
+        text_elements
+        |> Enum.filter(fn element ->
+          element["type"] == "user"
+        end)
+        |> Enum.map(fn element ->
+          element["user_id"]
+        end)
+        |> Enum.each(fn receiving_user_id ->
+          {:ok, _callout} =
+            Callouts.record(team, %{
+              channel_id: channel,
+              sending_user_id: sending_user_id,
+              receiving_user_id: receiving_user_id,
+              text: text
+            })
+        end)
 
         Client.react(team, channel, timestamp, "white_check_mark")
 
