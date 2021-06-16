@@ -55,6 +55,8 @@ defmodule HeyCake.Slack.Events.Message do
   alias HeyCake.Slack.Event
   alias HeyCake.Teams
 
+  @emoji ["cake", "cookie"]
+
   @impl true
   def process(event) do
     %{"ts" => timestamp} = event
@@ -63,7 +65,7 @@ defmodule HeyCake.Slack.Events.Message do
 
     text_elements = Event.text_elements(Map.fetch!(event, "blocks"))
 
-    case contains_cake?(text_elements) && contains_users?(text_elements) do
+    case contains_emoji?(text_elements) && contains_users?(text_elements) do
       true ->
         channel = Map.fetch!(event, "channel")
         sending_user_id = Map.fetch!(event, "user")
@@ -93,9 +95,9 @@ defmodule HeyCake.Slack.Events.Message do
     end
   end
 
-  def contains_cake?(text_elements) do
+  def contains_emoji?(text_elements) do
     Enum.any?(text_elements, fn element ->
-      element["type"] == "emoji" && element["name"] == "cake"
+      element["type"] == "emoji" && Enum.member?(@emoji, element["name"])
     end)
   end
 
