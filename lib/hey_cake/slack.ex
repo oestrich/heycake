@@ -55,7 +55,7 @@ defmodule HeyCake.Slack.Events.Message do
   alias HeyCake.Slack.Event
   alias HeyCake.Teams
 
-  @emoji ["cake", "cookie"]
+  @emoji ["cake", "cookie", "croissant"]
 
   @impl true
   def process(event) do
