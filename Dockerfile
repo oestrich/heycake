@@ -1,4 +1,4 @@
-FROM grapevinehaus/elixir:1.10.0-alpine-1 as builder
+FROM hexpm/elixir:1.10.0-erlang-21.3.8.24-alpine-3.13.3 as builder
 RUN apk update && \
       apk upgrade --no-cache && \
       apk add --no-cache gcc git make musl-dev && \
@@ -25,7 +25,7 @@ COPY . /app/
 RUN mix phx.digest && \
   mix release
 
-FROM alpine:3.11
+FROM alpine:3.13
 ENV LANG=C.UTF-8
 RUN apk update && \
   apk add -U bash openssl imagemagick && \
