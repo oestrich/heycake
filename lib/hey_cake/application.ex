@@ -20,6 +20,7 @@ defmodule HeyCake.Application do
       {Phoenix.PubSub, name: HeyCake.PubSub},
       HeyCake.Repo,
       {Oban, Config.oban_config()},
+      HeyCake.Telemetry,
       Web.Endpoint
     ]
 
