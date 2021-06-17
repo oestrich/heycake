@@ -9,7 +9,7 @@ defmodule Web.AuthController do
     %{current_user: user} = conn.assigns
 
     team_id = auth.credentials.other.team_id
-    token = auth.extra.raw_info.token.other_params["bot"]["bot_access_token"]
+    token = auth.credentials.token
 
     case Teams.register_team(user, team_id, token) do
       {:ok, _team} ->
