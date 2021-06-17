@@ -178,10 +178,10 @@ defmodule HeyCake.Slack.Events.Message do
   ]
 
   @impl true
-  def process(event) do
+  def process(event = %{"team" => team_id}) do
     %{"ts" => timestamp} = event
 
-    {:ok, team} = Teams.get(Map.fetch!(event, "team"))
+    {:ok, team} = Teams.get(team_id)
 
     text_elements = Event.text_elements(Map.fetch!(event, "blocks"))
 
@@ -234,6 +234,8 @@ defmodule HeyCake.Slack.Events.Message do
         :ok
     end
   end
+
+  def process(_), do: :ok
 
   def contains_emoji?(text_elements) do
     Enum.any?(text_elements, fn element ->
