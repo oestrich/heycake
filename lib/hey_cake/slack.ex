@@ -178,19 +178,23 @@ defmodule HeyCake.Slack.Events.Message do
   ]
 
   @impl true
-  def process(event = %{"team" => team_id}) do
+  def process(
+        event = %{
+          "team" => team_id,
+          "channel" => channel_id,
+          "user" => sending_user_id,
+          "text" => text,
+          "blocks" => blocks
+        }
+      ) do
     %{"ts" => timestamp} = event
 
     {:ok, team} = Teams.get(team_id)
 
-    text_elements = Event.text_elements(Map.fetch!(event, "blocks"))
+    text_elements = Event.text_elements(blocks)
 
     case contains_emoji?(text_elements) && contains_users?(text_elements) do
       true ->
-        channel_id = Map.fetch!(event, "channel")
-        sending_user_id = Map.fetch!(event, "user")
-        text = Map.fetch!(event, "text")
-
         users =
           text_elements
           |> Enum.filter(fn element ->
