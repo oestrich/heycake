@@ -41,9 +41,9 @@ defmodule HeyCake.Slack do
   Handler for Slack events
   """
 
-  alias HeyCake.Slack.Events.Message
   alias HeyCake.Slack.SlackChannel
   alias HeyCake.Slack.SlackUser
+  alias HeyCake.Slack.Worker
   alias HeyCake.Repo
 
   @doc """
@@ -54,7 +54,9 @@ defmodule HeyCake.Slack do
   def process_event(%{"command" => "/heycake"}), do: :ok
 
   def process_event(params = %{"event" => %{"type" => "message"}}) do
-    Message.process(params["event"])
+    params
+    |> Worker.new()
+    |> Oban.insert()
   end
 
   def process_event(_params), do: :ok
@@ -98,6 +100,21 @@ defmodule HeyCake.Slack do
         |> Ecto.Changeset.put_change(:team_id, user.team_id)
         |> Repo.update()
     end
+  end
+end
+
+defmodule HeyCake.Slack.Worker do
+  @moduledoc false
+
+  use Oban.Worker, queue: :slack
+
+  alias HeyCake.Slack.Events.Message
+
+  @impl true
+  def perform(%Oban.Job{args: event}) do
+    Message.process(event["event"])
+
+    {:ok, event}
   end
 end
 

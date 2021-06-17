@@ -74,6 +74,10 @@ defmodule HeyCake.Config do
       }
     ]
   end
+
+  def oban_config() do
+    Application.fetch_env!(:hey_cake, Oban)
+  end
 end
 
 defmodule HeyCake.Config.Cache do

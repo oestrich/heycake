@@ -11,6 +11,8 @@ config :hey_cake, Web.Endpoint,
 
 config :hey_cake, HeyCake.Mailer, adapter: Bamboo.TestAdapter
 
+config :hey_cake, Oban, queues: false, plugins: false
+
 # Print only warnings and errors during test
 config :logger, level: :warn
 

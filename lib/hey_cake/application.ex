@@ -19,6 +19,7 @@ defmodule HeyCake.Application do
       HeyCake.Config.Cache,
       {Phoenix.PubSub, name: HeyCake.PubSub},
       HeyCake.Repo,
+      {Oban, Config.oban_config()},
       Web.Endpoint
     ]
 

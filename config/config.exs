@@ -33,6 +33,11 @@ config :ueberauth, Ueberauth,
     slack: {Ueberauth.Strategy.Slack, [default_scope: "bot"]}
   ]
 
+config :hey_cake, Oban,
+  repo: HeyCake.Repo,
+  plugins: [Oban.Plugins.Pruner],
+  queues: [slack: 1]
+
 if File.exists?("config/#{Mix.env()}.exs") do
   import_config "#{Mix.env()}.exs"
 end
