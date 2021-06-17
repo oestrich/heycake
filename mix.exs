@@ -33,25 +33,27 @@ defmodule HeyCake.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:bamboo, "~> 1.3"},
+      {:bamboo, "~> 2.0"},
+      {:bamboo_phoenix, "~> 1.0"},
       {:credo, "~> 1.1", only: [:dev, :test]},
       {:ecto_sql, "~> 3.1"},
       {:gettext, "~> 0.11"},
       {:mojito, "~> 0.6"},
       {:jason, "~> 1.0"},
       {:logster, "~> 1.0"},
-      {:phoenix, "~> 1.4.11"},
+      {:phoenix, "~> 1.4"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:plug_cowboy, "~> 2.0"},
       {:porcelain, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
+      {:oban, "~> 2.7"},
       {:stein, "~> 0.5"},
       {:stein_phoenix, "~> 0.1"},
       {:ueberauth_slack, "~> 0.6"},
-      {:vapor, "~> 0.8.0"}
+      {:vapor, "~> 0.8"}
     ]
   end
 

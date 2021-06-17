@@ -14,7 +14,7 @@ config :hey_cake,
 # Configures the endpoint
 config :hey_cake, Web.Endpoint,
   render_errors: [view: Web.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: HeyCake.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: HeyCake.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,

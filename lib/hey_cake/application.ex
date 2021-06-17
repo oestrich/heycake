@@ -17,6 +17,7 @@ defmodule HeyCake.Application do
 
     children = [
       HeyCake.Config.Cache,
+      {Phoenix.PubSub, name: HeyCake.PubSub},
       HeyCake.Repo,
       Web.Endpoint
     ]
