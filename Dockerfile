@@ -10,12 +10,12 @@ COPY mix.* /app/
 RUN mix deps.get --only prod && \
   mix deps.compile
 
-FROM node:10.9 as frontend
+FROM node:12 as frontend
 WORKDIR /app
 COPY assets/package.json assets/yarn.lock /app/
 COPY --from=builder /app/deps/phoenix /deps/phoenix
 COPY --from=builder /app/deps/phoenix_html /deps/phoenix_html
-RUN npm install -g yarn && yarn install
+RUN yarn install
 COPY assets /app
 RUN yarn run deploy
 
