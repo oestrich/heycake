@@ -32,7 +32,7 @@ config :ueberauth, Ueberauth,
   providers: [
     slack:
       {Ueberauth.Strategy.Slack,
-       [default_scope: "channels:history,channels:read,reactions:write,users:read,emoji:read"]}
+       [default_scope: "bot,channels:history,channels:read,reactions:write,users:read,emoji:read"]}
   ]
 
 config :hey_cake, Oban,
