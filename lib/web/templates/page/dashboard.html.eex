@@ -5,7 +5,7 @@
     <%= Enum.map(@callouts, fn callout -> %>
       <li>
         <span class="text-blue-800"><%= callout.sending_user.name %></span>
-        gave <span class="text-green-700"><%= Enum.join(callout.emoji, ", ") %></span> to
+        gave <%= Enum.map(callout.emoji, fn emoji -> content_tag(:span, [":", emoji, ":"], class: "emoji-replace") end) %></span> to
         <span class="text-blue-800"><%= callout.receiving_user.name %></span>
       </li>
     <% end) %>

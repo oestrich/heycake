@@ -37,7 +37,12 @@ module.exports = (env, options) => ({
         test: /\.scss$/,
         use: [
           'style-loader', // creates style nodes from JS strings
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false,
+            },
+          },
           'css-loader', // translates CSS into CommonJS
           'sass-loader', // compiles Sass to CSS, using Node Sass by default
           'postcss-loader'
