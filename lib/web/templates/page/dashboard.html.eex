@@ -1,0 +1,13 @@
+<div class="bg-gray-200 p-8 rounded">
+  <h1 class="text-4xl text-gray-900 flex-grow">Recent Team Callouts</h1>
+
+  <ul>
+    <%= Enum.map(@callouts, fn callout -> %>
+      <li>
+        <span class="text-blue-800"><%= callout.sending_user.name %></span>
+        gave <span class="text-green-700"><%= Enum.join(callout.emoji, ", ") %></span> to
+        <span class="text-blue-800"><%= callout.receiving_user.name %></span>
+      </li>
+    <% end) %>
+  </ul>
+</div>
