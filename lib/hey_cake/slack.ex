@@ -55,7 +55,27 @@ defmodule HeyCake.Slack.Events.Message do
   alias HeyCake.Slack.Event
   alias HeyCake.Teams
 
-  @emoji ["burrito", "cake", "chestnut", "cookie", "croissant", "pizza"]
+  @emoji [
+    "birthday",
+    "bubble_tea",
+    "cake",
+    "candy",
+    "chestnut",
+    "chocolate_bar",
+    "cookie",
+    "croissant",
+    "cupcake",
+    "custard",
+    "doughnut",
+    "honey_pot",
+    "ice_cream",
+    "icecream",
+    "lollipop",
+    "moon_cake",
+    "pie",
+    "popcorn",
+    "shaved_ice"
+  ]
 
   @impl true
   def process(event) do
