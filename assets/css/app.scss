@@ -7,7 +7,7 @@
 }
 
 .btn-primary:focus {
-  @apply outline-none shadow-outline;
+  @apply outline-none shadow;
 }
 
 .btn-primary:hover {
@@ -27,7 +27,7 @@
 }
 
 .input:focus {
-  @apply outline-none shadow-outline;
+  @apply outline-none shadow;
 }
 
 @tailwind utilities;
