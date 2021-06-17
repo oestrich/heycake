@@ -30,7 +30,9 @@ config :stein_phoenix, :views, error_helpers: Web.ErrorHelpers
 
 config :ueberauth, Ueberauth,
   providers: [
-    slack: {Ueberauth.Strategy.Slack, [default_scope: "channels:history,reactions:write,users:read,emoji:read"]}
+    slack:
+      {Ueberauth.Strategy.Slack,
+       [default_scope: "channels:history,reactions:write,users:read,emoji:read"]}
   ]
 
 config :hey_cake, Oban,

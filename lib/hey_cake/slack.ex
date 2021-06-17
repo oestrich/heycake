@@ -338,10 +338,7 @@ defmodule HeyCake.Slack.Client do
   end
 
   def emoji(team) do
-    query =
-      URI.encode_query(
-        token: team.token
-      )
+    query = URI.encode_query(token: team.token)
 
     uri = URI.parse("https://slack.com/api/emoji.list")
     uri = Map.put(uri, :query, query)
